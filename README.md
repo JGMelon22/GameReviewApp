@@ -1,5 +1,5 @@
 # Game Review App
-A simple Web Api which represents an app to review video games.
+A simple Web Api which represents an app to review video games. Hats off top [Teddy Smith](https://www.youtube.com/c/TeddySmithNC)
 
 # Used tools
 - Rider;
