@@ -1,1 +1,1 @@
-﻿// global using NuGetPackage; 
+﻿global using using System.ComponentModel.DataAnnotations.Schema;
