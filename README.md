@@ -5,6 +5,6 @@ A simple Web Api which represents an app to review video games.
 - Rider;
 - xxx;
 
-- Used NuGet packages
+# Used NuGet packages
 - Swashbuckle.AspNetCore (6.2.3);
 - xxx;
