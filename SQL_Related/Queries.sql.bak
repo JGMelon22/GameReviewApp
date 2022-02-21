@@ -18,7 +18,12 @@ CREATE TABLE [Game]
 ALTER TABLE [Game]
     ADD CONSTRAINT [Pk_Game]
         PRIMARY KEY([Id])
+<<<<<<< HEAD
+ROLLBACK
+-- COMMIT
+=======
 ROLLBACK -- COMMIT
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 
 -- Category
 BEGIN TRANSACTION
@@ -31,7 +36,12 @@ CREATE TABLE [Category]
 ALTER TABLE [Category]
     ADD CONSTRAINT [Pk_Category]
         PRIMARY KEY([Id])
+<<<<<<< HEAD
+ROLLBACK
+-- COMMIT
+=======
 ROLLBACK -- COMMIT
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 
 -- Publisher
 BEGIN TRANSACTION
@@ -44,7 +54,12 @@ CREATE TABLE [Publisher]
 ALTER TABLE [Publisher]
     ADD CONSTRAINT [Pk_Publisher]
         PRIMARY KEY([Id])
+<<<<<<< HEAD
+ROLLBACK
+-- COMMIT
+=======
 ROLLBACK -- COMMIT
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 
 -- Review
 BEGIN TRANSACTION
@@ -58,7 +73,12 @@ CREATE TABLE [Review]
 ALTER TABLE [Review]
     ADD CONSTRAINT [Pk_Review]
         PRIMARY KEY([Id])
+<<<<<<< HEAD
+ROLLBACK
+-- COMMIT
+=======
 ROLLBACK -- COMMIT
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 
 -- Country
 BEGIN TRANSACTION
@@ -71,7 +91,12 @@ CREATE TABLE [Country]
 ALTER TABLE [Country]
     ADD CONSTRAINT [Pk_Country]
         PRIMARY KEY([Id])
+<<<<<<< HEAD
+ROLLBACK
+-- COMMIT
+=======
 ROLLBACK -- COMMIT
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 
 -- Reviewer
 BEGIN TRANSACTION
@@ -85,7 +110,12 @@ CREATE TABLE [Reviewer]
 ALTER TABLE [Reviewer]
     ADD CONSTRAINT [Pk_Reviewer]
         PRIMARY KEY([Id])
+<<<<<<< HEAD
+ROLLBACK
+-- COMMIT
+=======
 ROLLBACK -- COMMIT
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 
 -- Triggers to reset Id value after delete it on swagger
 -- Game
@@ -94,7 +124,11 @@ ON [dbo].[Game]
 INSTEAD OF DELETE
 AS 
 BEGIN
+<<<<<<< HEAD
+    DBCC CHECKIDENT ('[Game]', RESEED, 0);
+=======
 	DBCC CHECKIDENT ('[Game]', RESEED, 0);
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 END
 
 -- Category
@@ -103,7 +137,11 @@ ON [dbo].[Category]
 INSTEAD OF DELETE
 AS 
 BEGIN
+<<<<<<< HEAD
+    DBCC CHECKIDENT ('[Category]', RESEED, 0);
+=======
 	DBCC CHECKIDENT ('[Category]', RESEED, 0);
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 END
 
 -- Publisher
@@ -112,7 +150,11 @@ ON [dbo].[Publisher]
 INSTEAD OF DELETE
 AS 
 BEGIN
+<<<<<<< HEAD
+    DBCC CHECKIDENT ('[Publisher]', RESEED, 0);
+=======
 	DBCC CHECKIDENT ('[Publisher]', RESEED, 0);
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 END
 
 -- Review
@@ -121,7 +163,11 @@ ON [dbo].[Review]
 INSTEAD OF DELETE
 AS 
 BEGIN
+<<<<<<< HEAD
+    DBCC CHECKIDENT ('[Review]', RESEED, 0);
+=======
 	DBCC CHECKIDENT ('[Review]', RESEED, 0);
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 END
 
 -- Country
@@ -130,7 +176,11 @@ ON [dbo].[Country]
 INSTEAD OF DELETE
 AS 
 BEGIN
+<<<<<<< HEAD
+    DBCC CHECKIDENT ('[Country]', RESEED, 0);
+=======
 	DBCC CHECKIDENT ('[Country]', RESEED, 0);
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 END
 
 -- Review
@@ -139,5 +189,9 @@ ON [dbo].[Reviewer]
 INSTEAD OF DELETE
 AS 
 BEGIN
+<<<<<<< HEAD
+    DBCC CHECKIDENT ('[Reviewer]', RESEED, 0);
+=======
 	DBCC CHECKIDENT ('[Reviewer]', RESEED, 0);
+>>>>>>> 31c3437ed1a16d7103873f0fa5ed3298dc284188
 END
