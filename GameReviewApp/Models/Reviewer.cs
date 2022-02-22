@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace GameReviewApp.Models;
+﻿namespace GameReviewApp.Models;
 
 public class Reviewer
 {
