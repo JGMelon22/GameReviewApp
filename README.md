@@ -15,4 +15,4 @@ A simple Web Api which represents an app to review video games. Hats off top [Te
 - Microsoft.EntityFrameworkCore.Design (6.0.2).
 
 # UML Diagram
-![GameAppDiagram](https://user-images.githubusercontent.com/73988556/154999062-4cc6ba47-84c3-4cbd-a763-585f5d98b618.jpg)
+![UML_Diagram_Fix](https://user-images.githubusercontent.com/73988556/155228113-55cf4e8f-87aa-48a6-80a9-d444a582333c.jpg)
