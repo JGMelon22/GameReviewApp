@@ -1,7 +1,5 @@
 ﻿// Will populate the tables on un run time
 
-using GameReviewApp.Models;
-
 namespace GameReviewApp;
 
 public class Seed

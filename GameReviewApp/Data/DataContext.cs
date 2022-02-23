@@ -1,6 +1,4 @@
-﻿using GameReviewApp.Models;
-
-namespace GameReviewApp.Data;
+﻿namespace GameReviewApp.Data;
 
 public class DataContext : DbContext
 {

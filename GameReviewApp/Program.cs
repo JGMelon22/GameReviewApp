@@ -7,6 +7,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// DI
+builder.Services.AddScoped<IGameRepository, GameRepository>();
+
 // Register SQL Server connection
 // PS: if you were implementing it on production...
 // DO create a secret for at least the minimum safety measurement  

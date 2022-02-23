@@ -2,7 +2,6 @@
 
 public class Game
 {
-    // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty!;
     public DateTime ReleaseDate { get; set; }
