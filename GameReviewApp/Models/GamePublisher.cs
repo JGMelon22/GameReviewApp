@@ -6,5 +6,6 @@ public class GamePublisher
     public int PublisherId { get; set; }
 
     public Game Game { get; set; }
+
     public Publisher Publisher { get; set; }
 }

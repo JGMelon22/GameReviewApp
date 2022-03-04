@@ -20,6 +20,10 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 // "AddTransient" Injects the Seed class into the very beginning of the program
 builder.Services.AddTransient<Seed>();
+
+// Wrapping up automapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 // Injects the seed before the app starts
