@@ -5,3 +5,4 @@ global using GameReviewApp.Models;
 global using Microsoft.AspNetCore.Mvc;
 global using GameReviewApp.Interfaces;
 global using GameReviewApp.Repository;
+global using AutoMapper;

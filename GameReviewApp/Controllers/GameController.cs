@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using GameReviewApp.DTO;
+﻿using GameReviewApp.DTO;
 
 namespace GameReviewApp.Controllers;
 
@@ -16,6 +15,7 @@ public class GameController : Controller
         _mapper = mapper;
     }
 
+    // (Using DTO)
     // GET
     [HttpGet]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Game>))]
@@ -28,7 +28,7 @@ public class GameController : Controller
         return Ok(games);
     }
 
-    // GET by Id (Using DTO)
+    // GET by Id
     [HttpGet("{gameId}")]
     [ProducesResponseType(200, Type = typeof(Game))] // Cleaner design
     [ProducesResponseType(400)]

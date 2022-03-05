@@ -24,6 +24,11 @@ builder.Services.AddTransient<Seed>();
 // Wrapping up automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+// Registering more services to apply DI
+builder.Services.AddScoped<IGameRepository, GameRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+
 var app = builder.Build();
 
 // Injects the seed before the app starts
