@@ -12,7 +12,9 @@ A simple Web Api which represents an app to review video games. Hats off top [Te
 - Microsoft.EntityFrameworkCore (6.0.2);
 - Microsoft.EntityFrameworkCore.SqlServer (6.0.2);
 - Microsoft.EntityFrameworkCore.Relational (6.0.2);
-- Microsoft.EntityFrameworkCore.Design (6.0.2).
+- Microsoft.EntityFrameworkCore.Design (6.0.2);
+- AutoMapper (11.0.1);
+- AutoMapper.Extensions.Microsoft.DependencyInjection (11.0.0).
 
 # UML Diagram
 ![UML_Diagram_Fix](https://user-images.githubusercontent.com/73988556/155228113-55cf4e8f-87aa-48a6-80a9-d444a582333c.jpg)
