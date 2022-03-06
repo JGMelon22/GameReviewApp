@@ -33,7 +33,7 @@ public class ReviewerController : Controller
     {
         if (!_reviewerRepository.ReviewExists(reviewerId)) return BadRequest("Invalid settings");
 
-        var reviewer = _mapper.Map<ReviewDto>(_reviewerRepository.GetReviewer(reviewerId));
+        var reviewer = _mapper.Map<ReviewerDto>(_reviewerRepository.GetReviewer(reviewerId));
 
         if (!ModelState.IsValid) return BadRequest("Invalid settings");
 
