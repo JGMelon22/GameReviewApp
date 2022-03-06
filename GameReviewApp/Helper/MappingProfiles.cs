@@ -1,5 +1,3 @@
-using GameReviewApp.DTO;
-
 namespace GameReviewApp.Helper;
 
 public class MappingProfiles : Profile
@@ -9,5 +7,7 @@ public class MappingProfiles : Profile
         CreateMap<Game, GameDto>();
         CreateMap<Category, CategoryDto>();
         CreateMap<Country, CountryDto>();
+        CreateMap<Review, ReviewDto>();
+        CreateMap<Reviewer, ReviewerDto>();
     }
 }

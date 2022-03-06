@@ -1,5 +1,3 @@
-using GameReviewApp.DTO;
-
 namespace GameReviewApp.Controllers;
 
 [Route("api/[controller]")]
@@ -32,7 +30,7 @@ public class CategoryController : Controller
     [HttpGet("{Id}")]
     [ProducesResponseType(200, Type = typeof(Category))]
     [ProducesResponseType(400)]
-    public IActionResult GetCategories(int categoryId)
+    public IActionResult GetCategory(int categoryId)
     {
         if (!_categoryRepository.CategoryExists(categoryId)) return NotFound("The requested category does not exist!");
 

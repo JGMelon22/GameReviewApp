@@ -1,6 +1,4 @@
-﻿using GameReviewApp.DTO;
-
-namespace GameReviewApp.Controllers;
+﻿namespace GameReviewApp.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -32,7 +30,7 @@ public class GameController : Controller
     [HttpGet("{gameId}")]
     [ProducesResponseType(200, Type = typeof(Game))] // Cleaner design
     [ProducesResponseType(400)]
-    public IActionResult GetGames(int gameId)
+    public IActionResult GetGame(int gameId)
     {
         if (!_gameRepository.GameExists(gameId)) return NotFound("The requested game does not exist!");
 

@@ -1,8 +1,7 @@
-using GameReviewApp.DTO;
-
 namespace GameReviewApp.Controllers;
 
 [Route("api/[controller]")]
+[ApiController]
 public class CountryController : Controller
 {
     private readonly ICountryRepository _countryRepository;
