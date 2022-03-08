@@ -39,4 +39,16 @@ public class PublisherRepository : IPublisherRepository
     {
         return _context.Publishers.Any(x => x.Id == publisherId);
     }
+
+    public bool CreatePublisher(Publisher publisher)
+    {
+        _context.Add(publisher);
+        return Save();
+    }
+
+    public bool Save()
+    {
+        var saved = _context.SaveChanges();
+        return saved > 0 ? true : false;
+    }
 }

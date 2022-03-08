@@ -43,19 +43,51 @@ public class CountryController : Controller
         return Ok(country);
     }
 
-    [HttpGet("/publisher/{publishersId}")]
-    [ProducesResponseType(200, Type = typeof(Game))] // Cleaner design
+    [HttpGet("/publishers/{publishersId}")]
+    [ProducesResponseType(200, Type = typeof(Country))] // Cleaner design
     [ProducesResponseType(400)]
-    public IActionResult GetCountries(int publisherId)
+    public IActionResult GetCountryOfAPublisher(int publisherId)
     {
-        if (!_countryRepository.CountryExists(publisherId)) return NotFound("The requested country do not exist!");
-
         var country = _mapper.Map<CountryDto>(
             _countryRepository.GetCountryByPublisher(publisherId)
         );
 
-        if (!ModelState.IsValid) return BadRequest("Invalid settings");
+        if (!ModelState.IsValid)
+            return BadRequest("Invalid settings");
 
         return Ok(country);
+    }
+
+    // POST
+    [HttpPost]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult CreateCountry([FromBody] CountryDto countryCreate)
+    {
+        if (countryCreate == null) return BadRequest(ModelState);
+
+        // Checks if there is an actual instance  
+        // If theres repetition, pop ups an user friendly error
+        var country = _countryRepository.GetCountries()
+            .Where(x => x.Name.Trim().ToUpper() == countryCreate.Name.TrimEnd().ToUpper())
+            .FirstOrDefault();
+
+        if (country != null)
+        {
+            ModelState.AddModelError("", "Country already registered!");
+            return StatusCode(422, ModelState);
+        }
+
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var countryMap = _mapper.Map<Country>(countryCreate);
+
+        if (!_countryRepository.CreateCountry(countryMap))
+        {
+            ModelState.AddModelError("", "Something went wrong while saving");
+            return StatusCode(500, ModelState);
+        }
+
+        return Ok("Successfully created");
     }
 }

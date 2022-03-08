@@ -27,7 +27,7 @@ public class CategoryController : Controller
     }
 
     // GET by Id
-    [HttpGet("{Id}")]
+    [HttpGet("{categoryId}")]
     [ProducesResponseType(200, Type = typeof(Category))]
     [ProducesResponseType(400)]
     public IActionResult GetCategory(int categoryId)
@@ -53,5 +53,38 @@ public class CategoryController : Controller
         if (!ModelState.IsValid) return BadRequest("Invalid settings");
 
         return Ok(games);
+    }
+
+    // POST
+    [HttpPost]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    public IActionResult CreateCategory([FromBody] CategoryDto categoryCreate)
+    {
+        if (categoryCreate == null) return BadRequest(ModelState);
+
+        // Checks if there is an actual instance  
+        // If theres repetition, pop ups an user friendly error
+        var category = _categoryRepository.GetCategories()
+            .Where(x => x.Name.Trim().ToUpper() == categoryCreate.Name.TrimEnd().ToUpper())
+            .FirstOrDefault();
+
+        if (category != null)
+        {
+            ModelState.AddModelError("", "Category already exists");
+            return StatusCode(422, ModelState);
+        }
+
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var categoryMap = _mapper.Map<Category>(categoryCreate);
+
+        if (!_categoryRepository.CreateCategory(categoryMap))
+        {
+            ModelState.AddModelError("", "Something went wrong while saving");
+            return StatusCode(500, ModelState);
+        }
+
+        return Ok("Successfully created!");
     }
 }

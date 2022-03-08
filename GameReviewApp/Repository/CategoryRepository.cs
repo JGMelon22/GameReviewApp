@@ -32,4 +32,22 @@ public class CategoryRepository : ICategoryRepository
     {
         return _context.Categories.Any(x => x.Id == id);
     }
+
+    public bool CreateCategory(Category category)
+    {
+        // Change Tracker
+        /* add, updating, modifying 
+         * connected vs disconnected
+         * EntityState.Added
+         */
+        _context.Add(category);
+        return Save();
+    }
+
+    public bool Save()
+    {
+        var saved = _context.SaveChanges();
+
+        return saved > 0 ? true : false;
+    }
 }

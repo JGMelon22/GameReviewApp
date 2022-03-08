@@ -7,4 +7,8 @@ public interface IPublisherRepository
     ICollection<Publisher> GetPublisherOfAGame(int gameId);
     ICollection<Game> GetGameByPublisher(int publisherId);
     bool PublisherExists(int id);
+
+    // Signatures
+    bool CreatePublisher(Publisher publisher);
+    bool Save();
 }
