@@ -66,6 +66,8 @@ D:/Documents/CodeRelated/RandomCodes/CSharp/GameReviewApp/GameReviewApp/obj/Debu
 /home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/bin/Debug/net6.0/GameReviewApp.runtimeconfig.json
 /home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/bin/Debug/net6.0/GameReviewApp.dll
 /home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/bin/Debug/net6.0/GameReviewApp.pdb
+/home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/bin/Debug/net6.0/AutoMapper.dll
+/home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/bin/Debug/net6.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 /home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/bin/Debug/net6.0/Humanizer.dll
 /home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/bin/Debug/net6.0/Microsoft.Data.SqlClient.dll
 /home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
@@ -120,5 +122,3 @@ D:/Documents/CodeRelated/RandomCodes/CSharp/GameReviewApp/GameReviewApp/obj/Debu
 /home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/obj/Debug/net6.0/GameReviewApp.pdb
 /home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/obj/Debug/net6.0/GameReviewApp.genruntimeconfig.cache
 /home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/obj/Debug/net6.0/ref/GameReviewApp.dll
-/home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/bin/Debug/net6.0/AutoMapper.dll
-/home/joogabriel/Documents/CodeRelated/Codes/CSharp/GameReviewApp/GameReviewApp/bin/Debug/net6.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

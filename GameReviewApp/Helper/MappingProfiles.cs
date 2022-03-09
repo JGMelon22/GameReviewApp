@@ -7,6 +7,7 @@ public class MappingProfiles : Profile
         // Attention: with automapper, you need to map... 
         // the other way around either!
         CreateMap<Game, GameDto>();
+        CreateMap<GameDto, Game>();
         CreateMap<Publisher, PublisherDto>();
         CreateMap<PublisherDto, Publisher>();
         CreateMap<Category, CategoryDto>();
@@ -14,6 +15,8 @@ public class MappingProfiles : Profile
         CreateMap<Country, CountryDto>();
         CreateMap<CountryDto, Country>();
         CreateMap<Review, ReviewDto>();
+        CreateMap<ReviewDto, Review>();
         CreateMap<Reviewer, ReviewerDto>();
+        CreateMap<ReviewerDto, Reviewer>();
     }
 }

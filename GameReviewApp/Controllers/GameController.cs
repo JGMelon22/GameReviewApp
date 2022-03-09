@@ -54,4 +54,42 @@ public class GameController : Controller
 
         return Ok(rating);
     }
+
+    // POST
+    [HttpPost]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    public IActionResult CreateGame([FromQuery] int publisherId, [FromQuery] int catId,
+        [FromBody] GameDto gameCreate)
+    {
+        if (gameCreate == null)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var games = _gameRepository.GetGames()
+            .Where(x => x.Name.Trim().ToUpper() == gameCreate.Name.TrimEnd().ToUpper())
+            .FirstOrDefault();
+
+        if (games != null)
+        {
+            ModelState.AddModelError("", "The publisher already exists");
+            return StatusCode(422, ModelState);
+        }
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var gameMap = _mapper.Map<Game>(gameCreate);
+
+        if (!_gameRepository.CreateGame(publisherId, catId, gameMap))
+        {
+            ModelState.AddModelError("", "Something went wrong while saving");
+            return StatusCode(500, ModelState);
+        }
+
+        return Ok("Successfully created");
+    }
 }
