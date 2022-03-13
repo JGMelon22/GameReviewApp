@@ -6,8 +6,9 @@ public interface IReviewRepository
     Review GetReview(int id);
     ICollection<Review> GetReviewsOfAGame(int gameId);
     bool ReviewExists(int id);
-    
+
     // Signatures
     bool CreateReview(Review review);
+    bool UpdatedReview(Review review);
     bool Save();
 }

@@ -31,7 +31,7 @@ public class ReviewerController : Controller
     [ProducesResponseType(400)]
     public IActionResult GetGame(int reviewerId)
     {
-        if (!_reviewerRepository.ReviewExists(reviewerId)) return BadRequest("Invalid settings");
+        if (!_reviewerRepository.ReviewerExists(reviewerId)) return BadRequest("Invalid settings");
 
         var reviewer = _mapper.Map<ReviewerDto>(_reviewerRepository.GetReviewer(reviewerId));
 
@@ -44,7 +44,7 @@ public class ReviewerController : Controller
     [HttpGet("{reviewerId}/reviews")]
     public IActionResult GetReviewsByAReviewer(int reviewerId)
     {
-        if (!_reviewerRepository.ReviewExists(reviewerId))
+        if (!_reviewerRepository.ReviewerExists(reviewerId))
             return NotFound("The requested reviewerId do not exists");
 
         var reviews = _mapper.Map<List<ReviewDto>>(_reviewerRepository.GetReviewByReviewer(reviewerId));
@@ -60,10 +60,7 @@ public class ReviewerController : Controller
     [ProducesResponseType(400)]
     public IActionResult CreateReviewer([FromBody] ReviewerDto reviewerCreate)
     {
-        if (reviewerCreate == null)
-        {
-            return BadRequest(ModelState);
-        }
+        if (reviewerCreate == null) return BadRequest(ModelState);
 
         var reviewer = _reviewerRepository.GetReviewers()
             .Where(x => x.LastName.Trim().ToUpper() == reviewerCreate.LastName.TrimEnd().ToUpper())
@@ -75,10 +72,7 @@ public class ReviewerController : Controller
             return StatusCode(422, ModelState);
         }
 
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
+        if (!ModelState.IsValid) return BadRequest(ModelState);
 
         var reviewerMap = _mapper.Map<Reviewer>(reviewerCreate);
 
@@ -89,5 +83,35 @@ public class ReviewerController : Controller
         }
 
         return Ok("Successfully created");
+    }
+
+    // PUT
+    [HttpPut("{reviewerId}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult UpdateReviewer(int reviewerId, [FromBody] ReviewerDto updatedReviewer)
+    {
+        if (updatedReviewer == null)
+            return BadRequest(ModelState);
+
+        if (reviewerId != updatedReviewer.Id)
+            return BadRequest(ModelState);
+
+        if (!_reviewerRepository.ReviewerExists(reviewerId))
+            return NotFound();
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        var reviewerMap = _mapper.Map<Reviewer>(updatedReviewer);
+
+        if (!_reviewerRepository.UpdateReviewers(reviewerMap))
+        {
+            ModelState.AddModelError("", "Something went wrong while updating the reviewer");
+            return StatusCode(500, ModelState);
+        }
+
+        return NoContent();
     }
 }

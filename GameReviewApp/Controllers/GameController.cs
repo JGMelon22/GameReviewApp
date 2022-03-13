@@ -6,10 +6,14 @@ public class GameController : Controller
 {
     private readonly IGameRepository _gameRepository;
     private readonly IMapper _mapper;
+    private readonly IReviewerRepository _reviewerRepository;
 
-    public GameController(IGameRepository gameRepository, IMapper mapper) // Mr Fancy pants AutoMapper DI
+    public GameController(IGameRepository gameRepository,
+        IReviewerRepository reviewerRepository,
+        IMapper mapper) // Mr Fancy pants AutoMapper DI
     {
         _gameRepository = gameRepository;
+        _reviewerRepository = reviewerRepository;
         _mapper = mapper;
     }
 
@@ -62,10 +66,7 @@ public class GameController : Controller
     public IActionResult CreateGame([FromQuery] int publisherId, [FromQuery] int catId,
         [FromBody] GameDto gameCreate)
     {
-        if (gameCreate == null)
-        {
-            return BadRequest(ModelState);
-        }
+        if (gameCreate == null) return BadRequest(ModelState);
 
         var games = _gameRepository.GetGames()
             .Where(x => x.Name.Trim().ToUpper() == gameCreate.Name.TrimEnd().ToUpper())
@@ -77,10 +78,7 @@ public class GameController : Controller
             return StatusCode(422, ModelState);
         }
 
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
+        if (!ModelState.IsValid) return BadRequest(ModelState);
 
         var gameMap = _mapper.Map<Game>(gameCreate);
 
@@ -91,5 +89,37 @@ public class GameController : Controller
         }
 
         return Ok("Successfully created");
+    }
+
+    // PUT  
+    [HttpPut("{gameId}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult UpdateGame(int gameId,
+        [FromQuery] int publisherId, [FromQuery] int catId,
+        [FromBody] GameDto updatedGame)
+    {
+        if (updatedGame == null)
+            return BadRequest(ModelState);
+
+        if (gameId != updatedGame.Id)
+            return BadRequest(ModelState);
+
+        if (!_gameRepository.GameExists(gameId))
+            return NotFound();
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        var gameMap = _mapper.Map<Game>(updatedGame);
+
+        if (!_gameRepository.UpdateGame(publisherId, catId, gameMap))
+        {
+            ModelState.AddModelError("", "Something went wrong while updating the game");
+            return StatusCode(500, ModelState);
+        }
+
+        return NoContent();
     }
 }

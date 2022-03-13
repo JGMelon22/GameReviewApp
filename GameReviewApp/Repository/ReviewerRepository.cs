@@ -33,7 +33,7 @@ public class ReviewerRepository : IReviewerRepository
             .ToList();
     }
 
-    public bool ReviewExists(int reviewerId)
+    public bool ReviewerExists(int reviewerId)
     {
         return _context.Reviewers.Any(x => x.Id == reviewerId);
     }
@@ -41,6 +41,12 @@ public class ReviewerRepository : IReviewerRepository
     public bool CreateReviewers(Reviewer reviewer)
     {
         _context.Add(reviewer);
+        return Save();
+    }
+
+    public bool UpdateReviewers(Reviewer reviewer)
+    {
+        _context.Update(reviewer);
         return Save();
     }
 

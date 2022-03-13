@@ -46,6 +46,12 @@ public class PublisherRepository : IPublisherRepository
         return Save();
     }
 
+    public bool UpdatePublisher(Publisher publisher)
+    {
+        _context.Update(publisher);
+        return Save();
+    }
+
     public bool Save()
     {
         var saved = _context.SaveChanges();

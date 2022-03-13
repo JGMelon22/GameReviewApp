@@ -10,5 +10,6 @@ public interface ICountryRepository
 
     // Signatures 
     bool CreateCountry(Country country);
+    bool UpdateCountry(Country country);
     bool Save();
 }

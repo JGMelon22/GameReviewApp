@@ -97,4 +97,34 @@ public class PublisherController : Controller
 
         return Ok();
     }
+
+    // PUT
+    [HttpPut("{publisherId}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult UpdatePublisher(int publisherId, [FromBody] PublisherDto updatedPublisher)
+    {
+        if (updatedPublisher == null)
+            return BadRequest(ModelState);
+
+        if (publisherId != updatedPublisher.Id)
+            return BadRequest(ModelState);
+
+        if (!_publisherRepository.PublisherExists(publisherId))
+            return NotFound();
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        var publisherMap = _mapper.Map<Publisher>(updatedPublisher);
+
+        if (!_publisherRepository.UpdatePublisher(publisherMap))
+        {
+            ModelState.AddModelError("", "Something went wrong while updating the publisher");
+            return StatusCode(500, ModelState);
+        }
+
+        return NoContent();
+    }
 }

@@ -47,24 +47,31 @@ public class GameRepository : IGameRepository
             .Where(x => x.Id == categoryId).FirstOrDefault();
 
         // Relationship many to many
-        var gamePublisher = new GamePublisher()
+        var gamePublisher = new GamePublisher
         {
             Publisher = gamePublisherEntity,
             Game = game
         };
-        
+
         _context.Add(gamePublisher);
 
-        var gameCategory = new GameCategory()
+        var gameCategory = new GameCategory
         {
             Category = category,
             Game = game
         };
-        
+
         _context.Add(gameCategory);
 
         _context.Add(game);
 
+        return Save();
+    }
+
+    // Here!
+    public bool UpdateGame(int publisherId, int categoryId, Game game)
+    {
+        _context.Games.Update(game);
         return Save();
     }
 
