@@ -35,7 +35,7 @@ public class DataContext : DbContext
         modelBuilder.Entity<GameCategory>()
             .HasOne(x => x.Category)
             .WithMany(y => y.GameCategories)
-            .HasForeignKey(z => z.GameId);
+            .HasForeignKey(z => z.CategoryId); // GameId
 
         // GamePublisher --> GameId with PublisherId
         modelBuilder.Entity<GamePublisher>()
