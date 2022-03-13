@@ -2,6 +2,7 @@
 A simple Web Api which represents an app to review video games. Hats off top [Teddy Smith](https://www.youtube.com/c/TeddySmithNC)
 
 # Used tools
+- .NET 6;
 - Rider;
 - SQL Server 2019 (running on Docker);
 - DBeaver and Azure DataStudio (to help with SQL queries manipulation);
