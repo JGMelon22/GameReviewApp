@@ -38,15 +38,21 @@ public class ReviewerRepository : IReviewerRepository
         return _context.Reviewers.Any(x => x.Id == reviewerId);
     }
 
-    public bool CreateReviewers(Reviewer reviewer)
+    public bool CreateReviewer(Reviewer reviewer)
     {
         _context.Add(reviewer);
         return Save();
     }
 
-    public bool UpdateReviewers(Reviewer reviewer)
+    public bool UpdateReviewer(Reviewer reviewer)
     {
         _context.Update(reviewer);
+        return Save();
+    }
+
+    public bool DeleteReviewer(Reviewer reviewer)
+    {
+        _context.Remove(reviewer);
         return Save();
     }
 

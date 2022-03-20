@@ -75,6 +75,12 @@ public class GameRepository : IGameRepository
         return Save();
     }
 
+    public bool DeleteGame(Game gameId)
+    {
+        _context.Games.Remove(gameId);
+        return Save();
+    }
+
     public bool Save()
     {
         var saved = _context.SaveChanges();

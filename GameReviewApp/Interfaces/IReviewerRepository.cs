@@ -8,7 +8,8 @@ public interface IReviewerRepository
     bool ReviewerExists(int id);
 
     // Signatures
-    bool CreateReviewers(Reviewer reviewer);
-    bool UpdateReviewers(Reviewer reviewer);
+    bool CreateReviewer(Reviewer reviewer);
+    bool UpdateReviewer(Reviewer reviewer);
+    bool DeleteReviewer(Reviewer reviewer);
     bool Save();
 }

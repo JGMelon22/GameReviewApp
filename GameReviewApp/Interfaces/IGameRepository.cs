@@ -11,5 +11,6 @@ public interface IGameRepository
     // Signatures
     bool CreateGame(int publisherId, int categoryId, Game game);
     bool UpdateGame(int publisherId, int categoryId, Game game);
+    bool DeleteGame(Game gameId);
     bool Save();
 }

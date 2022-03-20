@@ -6,14 +6,14 @@ public class GameController : Controller
 {
     private readonly IGameRepository _gameRepository;
     private readonly IMapper _mapper;
-    private readonly IReviewerRepository _reviewerRepository;
+    private readonly IReviewRepository _reviewRepository;
 
     public GameController(IGameRepository gameRepository,
-        IReviewerRepository reviewerRepository,
+        IReviewRepository reviewRepository,
         IMapper mapper) // Mr Fancy pants AutoMapper DI
     {
         _gameRepository = gameRepository;
-        _reviewerRepository = reviewerRepository;
+        _reviewRepository = reviewRepository;
         _mapper = mapper;
     }
 
@@ -119,6 +119,32 @@ public class GameController : Controller
             ModelState.AddModelError("", "Something went wrong while updating the game");
             return StatusCode(500, ModelState);
         }
+
+        return NoContent();
+    }
+
+    // DELETE
+    [HttpDelete("{gameId}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult DeleteGame(int gameId)
+    {
+        if (!_gameRepository.GameExists(gameId))
+            return NotFound();
+
+        // Reviews are tied to a game
+        var reviewsToDelete = _reviewRepository.GetReviewsOfAGame(gameId);
+        var gameToDelete = _gameRepository.GetGame(gameId);
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        if (!_reviewRepository.DeleteReviews(reviewsToDelete.ToList()))
+            ModelState.AddModelError("", "Something went wrong when deleting reviews");
+
+        if (!_gameRepository.DeleteGame(gameToDelete))
+            ModelState.AddModelError("", "Something went wrong deleting game");
 
         return NoContent();
     }

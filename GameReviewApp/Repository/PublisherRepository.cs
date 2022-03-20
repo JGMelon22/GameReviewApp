@@ -52,6 +52,12 @@ public class PublisherRepository : IPublisherRepository
         return Save();
     }
 
+    public bool DeletePublisher(Publisher publisher)
+    {
+        _context.Publishers.Remove(publisher);
+        return Save();
+    }
+
     public bool Save()
     {
         var saved = _context.SaveChanges();

@@ -11,5 +11,6 @@ public interface IPublisherRepository
     // Signatures
     bool CreatePublisher(Publisher publisher);
     bool UpdatePublisher(Publisher publisher);
+    bool DeletePublisher(Publisher publisher);
     bool Save();
 }

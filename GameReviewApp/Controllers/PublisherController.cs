@@ -127,4 +127,25 @@ public class PublisherController : Controller
 
         return NoContent();
     }
+
+    // DELETE
+    [HttpDelete("{publisherId}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult DeletePublisher(int publisherId)
+    {
+        if (!_publisherRepository.PublisherExists(publisherId))
+            return NotFound();
+
+        var publisherToDelete = _publisherRepository.GetPublisher(publisherId);
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        if (!_publisherRepository.DeletePublisher(publisherToDelete))
+            ModelState.AddModelError("", "Something went wrong deleting publisher");
+
+        return NoContent();
+    }
 }
